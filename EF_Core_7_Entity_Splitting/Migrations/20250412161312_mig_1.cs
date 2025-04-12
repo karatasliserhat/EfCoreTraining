@@ -1,0 +1,403 @@
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+
+#nullable disable
+
+#pragma warning disable CA1814 // Prefer jagged arrays over multidimensional
+
+namespace EF_Core_7_Entity_Splitting.Migrations
+{
+    /// <inheritdoc />
+    public partial class mig_1 : Migration
+    {
+        /// <inheritdoc />
+        protected override void Up(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.CreateTable(
+                name: "Persons",
+                columns: table => new
+                {
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    Surname = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Persons", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Addresses",
+                columns: table => new
+                {
+                    PersonId = table.Column<int>(type: "int", nullable: false),
+                    Street = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    City = table.Column<string>(type: "nvarchar(max)", nullable: false),
+                    PostCode = table.Column<int>(type: "int", nullable: false),
+                    Country = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Addresses", x => x.PersonId);
+                    table.ForeignKey(
+                        name: "FK_Addresses_Persons_PersonId",
+                        column: x => x.PersonId,
+                        principalTable: "Persons",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PhoneNumbers",
+                columns: table => new
+                {
+                    PersonId = table.Column<int>(type: "int", nullable: false),
+                    PhoneNumber = table.Column<string>(type: "nvarchar(max)", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PhoneNumbers", x => x.PersonId);
+                    table.ForeignKey(
+                        name: "FK_PhoneNumbers_Persons_PersonId",
+                        column: x => x.PersonId,
+                        principalTable: "Persons",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.InsertData(
+                table: "Persons",
+                columns: new[] { "Id", "Name", "Surname" },
+                values: new object[,]
+                {
+                    { 1, "Person 1", "Surname 1" },
+                    { 2, "Person 2", "Surname 2" },
+                    { 3, "Person 3", "Surname 3" },
+                    { 4, "Person 4", "Surname 4" },
+                    { 5, "Person 5", "Surname 5" },
+                    { 6, "Person 6", "Surname 6" },
+                    { 7, "Person 7", "Surname 7" },
+                    { 8, "Person 8", "Surname 8" },
+                    { 9, "Person 9", "Surname 9" },
+                    { 10, "Person 10", "Surname 10" },
+                    { 11, "Person 11", "Surname 11" },
+                    { 12, "Person 12", "Surname 12" },
+                    { 13, "Person 13", "Surname 13" },
+                    { 14, "Person 14", "Surname 14" },
+                    { 15, "Person 15", "Surname 15" },
+                    { 16, "Person 16", "Surname 16" },
+                    { 17, "Person 17", "Surname 17" },
+                    { 18, "Person 18", "Surname 18" },
+                    { 19, "Person 19", "Surname 19" },
+                    { 20, "Person 20", "Surname 20" },
+                    { 21, "Person 21", "Surname 21" },
+                    { 22, "Person 22", "Surname 22" },
+                    { 23, "Person 23", "Surname 23" },
+                    { 24, "Person 24", "Surname 24" },
+                    { 25, "Person 25", "Surname 25" },
+                    { 26, "Person 26", "Surname 26" },
+                    { 27, "Person 27", "Surname 27" },
+                    { 28, "Person 28", "Surname 28" },
+                    { 29, "Person 29", "Surname 29" },
+                    { 30, "Person 30", "Surname 30" },
+                    { 31, "Person 31", "Surname 31" },
+                    { 32, "Person 32", "Surname 32" },
+                    { 33, "Person 33", "Surname 33" },
+                    { 34, "Person 34", "Surname 34" },
+                    { 35, "Person 35", "Surname 35" },
+                    { 36, "Person 36", "Surname 36" },
+                    { 37, "Person 37", "Surname 37" },
+                    { 38, "Person 38", "Surname 38" },
+                    { 39, "Person 39", "Surname 39" },
+                    { 40, "Person 40", "Surname 40" },
+                    { 41, "Person 41", "Surname 41" },
+                    { 42, "Person 42", "Surname 42" },
+                    { 43, "Person 43", "Surname 43" },
+                    { 44, "Person 44", "Surname 44" },
+                    { 45, "Person 45", "Surname 45" },
+                    { 46, "Person 46", "Surname 46" },
+                    { 47, "Person 47", "Surname 47" },
+                    { 48, "Person 48", "Surname 48" },
+                    { 49, "Person 49", "Surname 49" },
+                    { 50, "Person 50", "Surname 50" },
+                    { 51, "Person 51", "Surname 51" },
+                    { 52, "Person 52", "Surname 52" },
+                    { 53, "Person 53", "Surname 53" },
+                    { 54, "Person 54", "Surname 54" },
+                    { 55, "Person 55", "Surname 55" },
+                    { 56, "Person 56", "Surname 56" },
+                    { 57, "Person 57", "Surname 57" },
+                    { 58, "Person 58", "Surname 58" },
+                    { 59, "Person 59", "Surname 59" },
+                    { 60, "Person 60", "Surname 60" },
+                    { 61, "Person 61", "Surname 61" },
+                    { 62, "Person 62", "Surname 62" },
+                    { 63, "Person 63", "Surname 63" },
+                    { 64, "Person 64", "Surname 64" },
+                    { 65, "Person 65", "Surname 65" },
+                    { 66, "Person 66", "Surname 66" },
+                    { 67, "Person 67", "Surname 67" },
+                    { 68, "Person 68", "Surname 68" },
+                    { 69, "Person 69", "Surname 69" },
+                    { 70, "Person 70", "Surname 70" },
+                    { 71, "Person 71", "Surname 71" },
+                    { 72, "Person 72", "Surname 72" },
+                    { 73, "Person 73", "Surname 73" },
+                    { 74, "Person 74", "Surname 74" },
+                    { 75, "Person 75", "Surname 75" },
+                    { 76, "Person 76", "Surname 76" },
+                    { 77, "Person 77", "Surname 77" },
+                    { 78, "Person 78", "Surname 78" },
+                    { 79, "Person 79", "Surname 79" },
+                    { 80, "Person 80", "Surname 80" },
+                    { 81, "Person 81", "Surname 81" },
+                    { 82, "Person 82", "Surname 82" },
+                    { 83, "Person 83", "Surname 83" },
+                    { 84, "Person 84", "Surname 84" },
+                    { 85, "Person 85", "Surname 85" },
+                    { 86, "Person 86", "Surname 86" },
+                    { 87, "Person 87", "Surname 87" },
+                    { 88, "Person 88", "Surname 88" },
+                    { 89, "Person 89", "Surname 89" },
+                    { 90, "Person 90", "Surname 90" },
+                    { 91, "Person 91", "Surname 91" },
+                    { 92, "Person 92", "Surname 92" },
+                    { 93, "Person 93", "Surname 93" },
+                    { 94, "Person 94", "Surname 94" },
+                    { 95, "Person 95", "Surname 95" },
+                    { 96, "Person 96", "Surname 96" },
+                    { 97, "Person 97", "Surname 97" },
+                    { 98, "Person 98", "Surname 98" },
+                    { 99, "Person 99", "Surname 99" },
+                    { 100, "Person 100", "Surname 100" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "Addresses",
+                columns: new[] { "PersonId", "City", "Country", "PostCode", "Street" },
+                values: new object[,]
+                {
+                    { 1, "City 1", "Country 1", 1, "Street 1" },
+                    { 2, "City 2", "Country 2", 2, "Street 2" },
+                    { 3, "City 3", "Country 3", 3, "Street 3" },
+                    { 4, "City 4", "Country 4", 4, "Street 4" },
+                    { 5, "City 5", "Country 5", 5, "Street 5" },
+                    { 6, "City 6", "Country 6", 6, "Street 6" },
+                    { 7, "City 7", "Country 7", 7, "Street 7" },
+                    { 8, "City 8", "Country 8", 8, "Street 8" },
+                    { 9, "City 9", "Country 9", 9, "Street 9" },
+                    { 10, "City 10", "Country 10", 10, "Street 10" },
+                    { 11, "City 11", "Country 11", 11, "Street 11" },
+                    { 12, "City 12", "Country 12", 12, "Street 12" },
+                    { 13, "City 13", "Country 13", 13, "Street 13" },
+                    { 14, "City 14", "Country 14", 14, "Street 14" },
+                    { 15, "City 15", "Country 15", 15, "Street 15" },
+                    { 16, "City 16", "Country 16", 16, "Street 16" },
+                    { 17, "City 17", "Country 17", 17, "Street 17" },
+                    { 18, "City 18", "Country 18", 18, "Street 18" },
+                    { 19, "City 19", "Country 19", 19, "Street 19" },
+                    { 20, "City 20", "Country 20", 20, "Street 20" },
+                    { 21, "City 21", "Country 21", 21, "Street 21" },
+                    { 22, "City 22", "Country 22", 22, "Street 22" },
+                    { 23, "City 23", "Country 23", 23, "Street 23" },
+                    { 24, "City 24", "Country 24", 24, "Street 24" },
+                    { 25, "City 25", "Country 25", 25, "Street 25" },
+                    { 26, "City 26", "Country 26", 26, "Street 26" },
+                    { 27, "City 27", "Country 27", 27, "Street 27" },
+                    { 28, "City 28", "Country 28", 28, "Street 28" },
+                    { 29, "City 29", "Country 29", 29, "Street 29" },
+                    { 30, "City 30", "Country 30", 30, "Street 30" },
+                    { 31, "City 31", "Country 31", 31, "Street 31" },
+                    { 32, "City 32", "Country 32", 32, "Street 32" },
+                    { 33, "City 33", "Country 33", 33, "Street 33" },
+                    { 34, "City 34", "Country 34", 34, "Street 34" },
+                    { 35, "City 35", "Country 35", 35, "Street 35" },
+                    { 36, "City 36", "Country 36", 36, "Street 36" },
+                    { 37, "City 37", "Country 37", 37, "Street 37" },
+                    { 38, "City 38", "Country 38", 38, "Street 38" },
+                    { 39, "City 39", "Country 39", 39, "Street 39" },
+                    { 40, "City 40", "Country 40", 40, "Street 40" },
+                    { 41, "City 41", "Country 41", 41, "Street 41" },
+                    { 42, "City 42", "Country 42", 42, "Street 42" },
+                    { 43, "City 43", "Country 43", 43, "Street 43" },
+                    { 44, "City 44", "Country 44", 44, "Street 44" },
+                    { 45, "City 45", "Country 45", 45, "Street 45" },
+                    { 46, "City 46", "Country 46", 46, "Street 46" },
+                    { 47, "City 47", "Country 47", 47, "Street 47" },
+                    { 48, "City 48", "Country 48", 48, "Street 48" },
+                    { 49, "City 49", "Country 49", 49, "Street 49" },
+                    { 50, "City 50", "Country 50", 50, "Street 50" },
+                    { 51, "City 51", "Country 51", 51, "Street 51" },
+                    { 52, "City 52", "Country 52", 52, "Street 52" },
+                    { 53, "City 53", "Country 53", 53, "Street 53" },
+                    { 54, "City 54", "Country 54", 54, "Street 54" },
+                    { 55, "City 55", "Country 55", 55, "Street 55" },
+                    { 56, "City 56", "Country 56", 56, "Street 56" },
+                    { 57, "City 57", "Country 57", 57, "Street 57" },
+                    { 58, "City 58", "Country 58", 58, "Street 58" },
+                    { 59, "City 59", "Country 59", 59, "Street 59" },
+                    { 60, "City 60", "Country 60", 60, "Street 60" },
+                    { 61, "City 61", "Country 61", 61, "Street 61" },
+                    { 62, "City 62", "Country 62", 62, "Street 62" },
+                    { 63, "City 63", "Country 63", 63, "Street 63" },
+                    { 64, "City 64", "Country 64", 64, "Street 64" },
+                    { 65, "City 65", "Country 65", 65, "Street 65" },
+                    { 66, "City 66", "Country 66", 66, "Street 66" },
+                    { 67, "City 67", "Country 67", 67, "Street 67" },
+                    { 68, "City 68", "Country 68", 68, "Street 68" },
+                    { 69, "City 69", "Country 69", 69, "Street 69" },
+                    { 70, "City 70", "Country 70", 70, "Street 70" },
+                    { 71, "City 71", "Country 71", 71, "Street 71" },
+                    { 72, "City 72", "Country 72", 72, "Street 72" },
+                    { 73, "City 73", "Country 73", 73, "Street 73" },
+                    { 74, "City 74", "Country 74", 74, "Street 74" },
+                    { 75, "City 75", "Country 75", 75, "Street 75" },
+                    { 76, "City 76", "Country 76", 76, "Street 76" },
+                    { 77, "City 77", "Country 77", 77, "Street 77" },
+                    { 78, "City 78", "Country 78", 78, "Street 78" },
+                    { 79, "City 79", "Country 79", 79, "Street 79" },
+                    { 80, "City 80", "Country 80", 80, "Street 80" },
+                    { 81, "City 81", "Country 81", 81, "Street 81" },
+                    { 82, "City 82", "Country 82", 82, "Street 82" },
+                    { 83, "City 83", "Country 83", 83, "Street 83" },
+                    { 84, "City 84", "Country 84", 84, "Street 84" },
+                    { 85, "City 85", "Country 85", 85, "Street 85" },
+                    { 86, "City 86", "Country 86", 86, "Street 86" },
+                    { 87, "City 87", "Country 87", 87, "Street 87" },
+                    { 88, "City 88", "Country 88", 88, "Street 88" },
+                    { 89, "City 89", "Country 89", 89, "Street 89" },
+                    { 90, "City 90", "Country 90", 90, "Street 90" },
+                    { 91, "City 91", "Country 91", 91, "Street 91" },
+                    { 92, "City 92", "Country 92", 92, "Street 92" },
+                    { 93, "City 93", "Country 93", 93, "Street 93" },
+                    { 94, "City 94", "Country 94", 94, "Street 94" },
+                    { 95, "City 95", "Country 95", 95, "Street 95" },
+                    { 96, "City 96", "Country 96", 96, "Street 96" },
+                    { 97, "City 97", "Country 97", 97, "Street 97" },
+                    { 98, "City 98", "Country 98", 98, "Street 98" },
+                    { 99, "City 99", "Country 99", 99, "Street 99" },
+                    { 100, "City 100", "Country 100", 100, "Street 100" }
+                });
+
+            migrationBuilder.InsertData(
+                table: "PhoneNumbers",
+                columns: new[] { "PersonId", "PhoneNumber" },
+                values: new object[,]
+                {
+                    { 1, "Phone 1" },
+                    { 2, "Phone 2" },
+                    { 3, "Phone 3" },
+                    { 4, "Phone 4" },
+                    { 5, "Phone 5" },
+                    { 6, "Phone 6" },
+                    { 7, "Phone 7" },
+                    { 8, "Phone 8" },
+                    { 9, "Phone 9" },
+                    { 10, "Phone 10" },
+                    { 11, "Phone 11" },
+                    { 12, "Phone 12" },
+                    { 13, "Phone 13" },
+                    { 14, "Phone 14" },
+                    { 15, "Phone 15" },
+                    { 16, "Phone 16" },
+                    { 17, "Phone 17" },
+                    { 18, "Phone 18" },
+                    { 19, "Phone 19" },
+                    { 20, "Phone 20" },
+                    { 21, "Phone 21" },
+                    { 22, "Phone 22" },
+                    { 23, "Phone 23" },
+                    { 24, "Phone 24" },
+                    { 25, "Phone 25" },
+                    { 26, "Phone 26" },
+                    { 27, "Phone 27" },
+                    { 28, "Phone 28" },
+                    { 29, "Phone 29" },
+                    { 30, "Phone 30" },
+                    { 31, "Phone 31" },
+                    { 32, "Phone 32" },
+                    { 33, "Phone 33" },
+                    { 34, "Phone 34" },
+                    { 35, "Phone 35" },
+                    { 36, "Phone 36" },
+                    { 37, "Phone 37" },
+                    { 38, "Phone 38" },
+                    { 39, "Phone 39" },
+                    { 40, "Phone 40" },
+                    { 41, "Phone 41" },
+                    { 42, "Phone 42" },
+                    { 43, "Phone 43" },
+                    { 44, "Phone 44" },
+                    { 45, "Phone 45" },
+                    { 46, "Phone 46" },
+                    { 47, "Phone 47" },
+                    { 48, "Phone 48" },
+                    { 49, "Phone 49" },
+                    { 50, "Phone 50" },
+                    { 51, "Phone 51" },
+                    { 52, "Phone 52" },
+                    { 53, "Phone 53" },
+                    { 54, "Phone 54" },
+                    { 55, "Phone 55" },
+                    { 56, "Phone 56" },
+                    { 57, "Phone 57" },
+                    { 58, "Phone 58" },
+                    { 59, "Phone 59" },
+                    { 60, "Phone 60" },
+                    { 61, "Phone 61" },
+                    { 62, "Phone 62" },
+                    { 63, "Phone 63" },
+                    { 64, "Phone 64" },
+                    { 65, "Phone 65" },
+                    { 66, "Phone 66" },
+                    { 67, "Phone 67" },
+                    { 68, "Phone 68" },
+                    { 69, "Phone 69" },
+                    { 70, "Phone 70" },
+                    { 71, "Phone 71" },
+                    { 72, "Phone 72" },
+                    { 73, "Phone 73" },
+                    { 74, "Phone 74" },
+                    { 75, "Phone 75" },
+                    { 76, "Phone 76" },
+                    { 77, "Phone 77" },
+                    { 78, "Phone 78" },
+                    { 79, "Phone 79" },
+                    { 80, "Phone 80" },
+                    { 81, "Phone 81" },
+                    { 82, "Phone 82" },
+                    { 83, "Phone 83" },
+                    { 84, "Phone 84" },
+                    { 85, "Phone 85" },
+                    { 86, "Phone 86" },
+                    { 87, "Phone 87" },
+                    { 88, "Phone 88" },
+                    { 89, "Phone 89" },
+                    { 90, "Phone 90" },
+                    { 91, "Phone 91" },
+                    { 92, "Phone 92" },
+                    { 93, "Phone 93" },
+                    { 94, "Phone 94" },
+                    { 95, "Phone 95" },
+                    { 96, "Phone 96" },
+                    { 97, "Phone 97" },
+                    { 98, "Phone 98" },
+                    { 99, "Phone 99" },
+                    { 100, "Phone 100" }
+                });
+        }
+
+        /// <inheritdoc />
+        protected override void Down(MigrationBuilder migrationBuilder)
+        {
+            migrationBuilder.DropTable(
+                name: "Addresses");
+
+            migrationBuilder.DropTable(
+                name: "PhoneNumbers");
+
+            migrationBuilder.DropTable(
+                name: "Persons");
+        }
+    }
+}
